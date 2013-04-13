@@ -121,33 +121,19 @@ body{
 <div class="LasestNews" ng-bind-html="mainRight">
 </div>
 <!--End of mainRight-->
-<div class="accordion" id="accordion2">
-  <div class="accordion-group" ng-repeat="(idx,title) in content.index">
-    
-    <!--Begin of accordion-heading-->
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse_{{idx}}">
-       <span>标题：{{title}}</span>
-      </a>
-    </div>
-    <!--End of according heading-->
 
-	<!--Begin of according body-->
-        <div id="collapse_{{idx}}" class="accordion-body collapse">
-      		<div class="accordion-inner" ng-bind-html="content[title].description[0]"></div>
-    		<!--Begin of reshare-->
-		<div class="text-right" style="margin-right:10px;margin-bottom:10px;">
-			<a href="#"  data-toggle="modal" data-target="#shareDoubanModal" ng-click="prepare_douban(title)">推荐到豆瓣</a>
-			<a href="#"  ng-click="share_weibo(title)">推荐到新浪</a>
-		</div>
-		<!--End of reshare-->
-	</div>
-        <!-- End of collapse body-->
-    </div>
-	<!-- End of according...group-->
-  </div>
-</div><!-- End of accordion-->
-
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>项目名称</th><th>操作</th>
+  </tr>
+</thead>
+  <tbody>
+    <tr>
+      <td>蓝宇</td><td><button class="btn btn-primary" type="button" data-toggle="modal" data-target="#getProject">认领</button></td>
+    </tr>  
+  </tbody>  
+</table>
 
    <div><!-- row-fluid END-->
 </div><!-- span10 END-->
@@ -160,24 +146,31 @@ body{
 </div><!--container-fluid END -->
 
 <!-- Modal -->
-<div id="shareDoubanModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dbModalLabel" aria-hidden="true">
+<div id="getProject" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dbModalLabel" aria-hidden="true">
   <!-- Begin of modal-header-->
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="dbModalLabel">推荐到豆瓣</h3>
+    <h3 id="dbModalLabel">认领任务</h3>
   </div>
   <!-- End of modal-header-->
   
   
   <!--Begin of modal-body-->
   <div class="modal-body" style="padding-left:20px">
-        <textarea style="width:93%" ng-model="rec_say" rows="3" placeholder="100..."></textarea>
-        <img class="img-polaroid" src="{{douban_shuo.rec_image}}" style="float:right;margin-left:12px;margin-right:22px;max-width:20%;">
-          <p class="muted">{{douban_shuo.rec_title}}</p>
-          <p class="muted" style="margin-left:20px;">{{douban_shuo.rec_url}}</p>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">项目名：</label>
+      <div class="controls">
+        蓝宇
+      </div>
+     <div class="control-group">
+      <label class="control-label" for="inputPassword">预计完成所需时间：</label>
+      <div class="controls">
+        <input ng-model="tHeader" type="text" id="inputPassword" placeholder="....">
+      </div>
+    </div>
   </div><!-- End of modal-body-->
   <div class="modal-footer">
-        <a href="#" class="btn btn-success" ng-click="share_douban()">推荐</a>
+        <a href="#" class="btn btn-success" ng-click="share_douban()">认领</a>
   </div>
 </div>
 <!-- End of Modal -->
